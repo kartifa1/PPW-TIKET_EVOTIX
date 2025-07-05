@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVOTIX.ID</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/detail_evotix.css">
+</head>
+<body>
+ <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="../img/evotix.png" alt="Evotix" height="40">
+            </a>
+
+            <!-- Burger Menu (Mobile) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarEvotix"
+                aria-controls="navbarEvotix" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarEvotix">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Link Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#event">Event</a>
+                    </li>
+
+                    <!-- Dropdown Kategori -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="color: #575757;">
+                            Kategori
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="kategoriDropdown" style="min-width: 200px;">
+                            <li><a class="dropdown-item" href="#event-terdekat">Konser Musik</a></li>
+                            <li><a class="dropdown-item" href="#event-terdekat">Festival</a></li>
+                            <li><a class="dropdown-item" href="#event-terdekat">Workshop</a></li>
+                            <li><a class="dropdown-item" href="#event-terdekat">Olahraga</a></li>
+                            <li><a class="dropdown-item" href="#event-terdekat">Teater</a></li>
+                            <li><a class="dropdown-item" href="#event-terdekat">Event Keluarga</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#promo">Promo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bantuan">Bantuan</a>
+                    </li>
+                </ul>
+
+                <!-- Search -->
+                <form class="d-none d-lg-flex me-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Cari event..." aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Cari</button>
+                </form>
+
+                <!-- Bahasa & Currency -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button"
+                        id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <!-- Icon globe -->
+                        <img src="../img/translate.png" alt="Bahasa & Mata Uang" width="20" height="20">
+                        <span>IDR / ID</span>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+                        <li><a class="dropdown-item" href="#">Bahasa Indonesia</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Currency: IDR</a></li>
+                    </ul>
+                </div>
+
+                <!-- Profil -->
+                <div class="dropdown">
+                    <a class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2" href="#"
+                        role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        <!-- Gambar profil -->
+                        <img src="../img/login.png" alt="Rahmat" class="rounded-circle" width="25" height="25">
+                        <span>Rahmat</span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="#">Profil Saya</a></li>
+                        <li><a class="dropdown-item" href="#">Pesanan Saya</a></li>
+                        <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="./login.html">Keluar</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+<!-- END NAVBAR -->
+  <!-- data seller -->
+  <main class="container my-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../img/veterancup.jpg" alt="event Poster" class="img-fluid rounded">
+      </div>
+      <div class="col-md-6">
+        <h2>Veteran Cup Festival 2025</h2>
+        <p><strong>📅 Tanggal:</strong> 13 September 2025</p>
+        <p><strong>⏰ Waktu:</strong> 15:00 - 23.45 WIB</p>
+        <p><strong>📍 Lokasi:</strong> Stadion Kridosono Yogyakarta</p>
+        <p><strong>💸 Harga:</strong> <span id="harga">Rp 110.000</span></p>
+        <a href="buy.html" class="btn btn-primary" id="buy-now">Buy Ticket</a>
+      </div>
+    </div>
+
+     <!-- Script: Simpan event ke localStorage -->
+  <script>
+    document.getElementById('buy-now').addEventListener('click', function () {
+      const eventData = {
+        title: "Veteran Cup Festival 2025",
+        date: "13 September 2025",
+        time: "15:00 - 23.45 WIB",
+        location: "Stadion Kridosono Yogyakarta",
+        image: "veterancup.jpg", // Gambar sesuai yang ditampilkan
+        price: 110000
+      };
+      localStorage.setItem("selectedEvent", JSON.stringify(eventData));
+    });
+  </script>
+
+    <div class="mt-5">
+      <h3>Deskripsi</h3>
+      <p>Veteran Cup Festival 2025 diselenggarakan oleh Veteran Community Universitas Veteran Yogyakarta, mengusung tema Hari Raya Patah Hati.
+        Bergabunglah dalam pengalaman konser yang memukau, meng-SAD dan nostalgia bersama.</p>
+    </div>
+
+    <div class="mt-4">
+      <h3>Syarat & Ketentuan</h3>
+      <ul>
+        <li>Tiket tidak dapat ditukar atau dikembalikan.</li>
+        <li>Tiket tidak dapat dipindah tangankan.</li>
+      </ul>
+
+      <h4>Persyaratan Masuk</h4>
+      <p><strong>Untuk WNI:</strong></p>
+      <ul>
+        <li>Anak-anak diharap dalam pengawasan.</li>
+        <li>Bawa identitas (KTP/KK/KIA untuk anak).</li>
+      </ul>
+      <p><strong>Untuk WNA:</strong></p>
+      <ul>
+        <li>Bawa paspor atau KITAS.</li>
+      </ul>
+
+      <h4>Barang Terlarang</h4>
+      <ul>
+        <li>Senjata tajam</li>
+        <li>Obat-obatan terlarang</li>
+        <li>Minuman beralkohol</li>
+      </ul>
+    </div>
+
+    <!-- Carousel -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="../img/nct.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <a href="NCT.html" class="btn btn-outline-secondary">Lihat Detail event</a>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="../img/BKrun.jpeg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <a href="BKRun.html" class="btn btn-outline-secondary">Lihat Detail event</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/historia.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <a href="HISTORIA.html" class="btn btn-outline-secondary">Lihat Detail event</a>
+                    </div>
+                </div>
+            </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  </main>
+
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<!-- FOOTER -->
+    <div class=" w-full">
+        <!-- Footer -->
+        <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg"
+            class="transition duration-300 ease-in-out delay-150">
+            <style>
+                .path-0 {
+                    animation: pathAnim-0 4s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                }
+
+                @keyframes pathAnim-0 {
+                    0% {
+                        d: path("M 0,400 L 0,60 C 95.24401913875596,74.48803827751196 190.48803827751192,88.97607655502392 286,84 C 381.5119617224881,79.02392344497608 477.2918660287081,54.58373205741627 588,49 C 698.7081339712919,43.41626794258373 824.3444976076554,56.68899521531101 911,64 C 997.6555023923446,71.31100478468899 1045.33014354067,72.66028708133972 1127,71 C 1208.66985645933,69.33971291866028 1324.334928229665,64.66985645933013 1440,60 L 1440,400 L 0,400 Z");
+                    }
+
+                    25% {
+                        d: path("M 0,400 L 0,60 C 72.62200956937801,67.17703349282297 145.24401913875602,74.35406698564593 250,74 C 354.755980861244,73.64593301435407 491.645933014354,65.76076555023923 593,67 C 694.354066985646,68.23923444976077 760.1722488038278,78.60287081339713 858,78 C 955.8277511961722,77.39712918660287 1085.665071770335,65.82775119617224 1188,61 C 1290.334928229665,56.172248803827756 1365.1674641148325,58.08612440191388 1440,60 L 1440,400 L 0,400 Z");
+                    }
+
+                    50% {
+                        d: path("M 0,400 L 0,60 C 90.07655502392345,41.473684210526315 180.1531100478469,22.947368421052637 272,34 C 363.8468899521531,45.05263157894736 457.46411483253587,85.68421052631578 566,84 C 674.5358851674641,82.31578947368422 797.9904306220094,38.315789473684205 896,37 C 994.0095693779906,35.684210526315795 1066.5741626794259,77.05263157894737 1153,88 C 1239.4258373205741,98.94736842105263 1339.712918660287,79.47368421052632 1440,60 L 1440,400 L 0,400 Z");
+                    }
+
+                    75% {
+                        d: path("M 0,400 L 0,60 C 101.06220095693783,70.08612440191388 202.12440191387566,80.17224880382776 288,78 C 373.87559808612434,75.82775119617224 444.56459330143537,61.39712918660287 549,56 C 653.4354066985646,50.60287081339713 791.6172248803828,54.23923444976077 892,60 C 992.3827751196172,65.76076555023923 1054.9665071770337,73.64593301435407 1140,74 C 1225.0334928229663,74.35406698564593 1332.5167464114832,67.17703349282297 1440,60 L 1440,400 L 0,400 Z");
+                    }
+
+                    100% {
+                        d: path("M 0,400 L 0,60 C 95.24401913875596,74.48803827751196 190.48803827751192,88.97607655502392 286,84 C 381.5119617224881,79.02392344497608 477.2918660287081,54.58373205741627 588,49 C 698.7081339712919,43.41626794258373 824.3444976076554,56.68899521531101 911,64 C 997.6555023923446,71.31100478468899 1045.33014354067,72.66028708133972 1127,71 C 1208.66985645933,69.33971291866028 1324.334928229665,64.66985645933013 1440,60 L 1440,400 L 0,400 Z");
+                    }
+                }
+            </style>
+            <defs>
+                <linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%">
+                    <stop offset="5%" stop-color="#575757"></stop>
+                    <stop offset="95%" stop-color="#575757"></stop>
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,400 L 0,60 C 95.24401913875596,74.48803827751196 190.48803827751192,88.97607655502392 286,84 C 381.5119617224881,79.02392344497608 477.2918660287081,54.58373205741627 588,49 C 698.7081339712919,43.41626794258373 824.3444976076554,56.68899521531101 911,64 C 997.6555023923446,71.31100478468899 1045.33014354067,72.66028708133972 1127,71 C 1208.66985645933,69.33971291866028 1324.334928229665,64.66985645933013 1440,60 L 1440,400 L 0,400 Z"
+                stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.265"
+                class="transition-all duration-300 ease-in-out delay-150 path-0"></path>
+            <style>
+                .path-1 {
+                    animation: pathAnim-1 4s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                }
+
+                @keyframes pathAnim-1 {
+                    0% {
+                        d: path("M 0,400 L 0,140 C 72.46889952153111,124.94736842105263 144.93779904306223,109.89473684210527 252,112 C 359.0622009569378,114.10526315789473 500.71770334928226,133.36842105263156 616,137 C 731.2822966507177,140.63157894736844 820.1913875598088,128.63157894736844 904,121 C 987.8086124401912,113.36842105263158 1066.5167464114832,110.10526315789474 1155,114 C 1243.4832535885168,117.89473684210526 1341.7416267942585,128.94736842105263 1440,140 L 1440,400 L 0,400 Z");
+                    }
+
+                    25% {
+                        d: path("M 0,400 L 0,140 C 82.50717703349281,130.3444976076555 165.01435406698562,120.688995215311 273,130 C 380.9856459330144,139.311004784689 514.4497607655502,167.58851674641147 612,165 C 709.5502392344498,162.41148325358853 771.1866028708135,128.9569377990431 853,116 C 934.8133971291865,103.04306220095692 1036.8038277511962,110.58373205741627 1138,118 C 1239.1961722488038,125.41626794258373 1339.598086124402,132.70813397129186 1440,140 L 1440,400 L 0,400 Z");
+                    }
+
+                    50% {
+                        d: path("M 0,400 L 0,140 C 78.25837320574163,128.54545454545456 156.51674641148327,117.0909090909091 253,125 C 349.48325358851673,132.9090909090909 464.1913875598086,160.18181818181816 567,166 C 669.8086124401914,171.81818181818184 760.7177033492823,156.1818181818182 855,152 C 949.2822966507177,147.8181818181818 1046.9377990430621,155.0909090909091 1145,155 C 1243.0622009569379,154.9090909090909 1341.531100478469,147.45454545454544 1440,140 L 1440,400 L 0,400 Z");
+                    }
+
+                    75% {
+                        d: path("M 0,400 L 0,140 C 110.08612440191388,126.31578947368422 220.17224880382776,112.63157894736842 311,114 C 401.82775119617224,115.36842105263158 473.3971291866028,131.78947368421052 568,146 C 662.6028708133972,160.21052631578948 780.2392344497608,172.21052631578948 879,169 C 977.7607655502392,165.78947368421052 1057.6459330143541,147.3684210526316 1148,140 C 1238.3540669856459,132.6315789473684 1339.1770334928228,136.31578947368422 1440,140 L 1440,400 L 0,400 Z");
+                    }
+
+                    100% {
+                        d: path("M 0,400 L 0,140 C 72.46889952153111,124.94736842105263 144.93779904306223,109.89473684210527 252,112 C 359.0622009569378,114.10526315789473 500.71770334928226,133.36842105263156 616,137 C 731.2822966507177,140.63157894736844 820.1913875598088,128.63157894736844 904,121 C 987.8086124401912,113.36842105263158 1066.5167464114832,110.10526315789474 1155,114 C 1243.4832535885168,117.89473684210526 1341.7416267942585,128.94736842105263 1440,140 L 1440,400 L 0,400 Z");
+                    }
+                }
+            </style>
+            <defs>
+                <linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%">
+                    <stop offset="5%" stop-color="#575757"></stop>
+                    <stop offset="95%" stop-color="#575757"></stop>
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,400 L 0,140 C 72.46889952153111,124.94736842105263 144.93779904306223,109.89473684210527 252,112 C 359.0622009569378,114.10526315789473 500.71770334928226,133.36842105263156 616,137 C 731.2822966507177,140.63157894736844 820.1913875598088,128.63157894736844 904,121 C 987.8086124401912,113.36842105263158 1066.5167464114832,110.10526315789474 1155,114 C 1243.4832535885168,117.89473684210526 1341.7416267942585,128.94736842105263 1440,140 L 1440,400 L 0,400 Z"
+                stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.4"
+                class="transition-all duration-300 ease-in-out delay-150 path-1"></path>
+            <style>
+                .path-2 {
+                    animation: pathAnim-2 4s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                }
+
+                @keyframes pathAnim-2 {
+                    0% {
+                        d: path("M 0,400 L 0,220 C 81.25358851674642,221.77033492822966 162.50717703349284,223.54066985645932 268,226 C 373.49282296650716,228.45933014354068 503.22488038277504,231.60765550239236 594,237 C 684.775119617225,242.39234449760764 736.5933014354068,250.0287081339713 821,245 C 905.4066985645932,239.9712918660287 1022.401913875598,222.27751196172252 1131,216 C 1239.598086124402,209.72248803827748 1339.799043062201,214.86124401913872 1440,220 L 1440,400 L 0,400 Z");
+                    }
+
+                    25% {
+                        d: path("M 0,400 L 0,220 C 118.50717703349281,225.63636363636363 237.01435406698562,231.27272727272728 330,222 C 422.9856459330144,212.72727272727272 490.4497607655503,188.5454545454545 560,195 C 629.5502392344497,201.4545454545455 701.1866028708134,238.5454545454546 811,240 C 920.8133971291866,241.4545454545454 1068.8038277511962,207.27272727272728 1180,198 C 1291.1961722488038,188.72727272727272 1365.598086124402,204.36363636363637 1440,220 L 1440,400 L 0,400 Z");
+                    }
+
+                    50% {
+                        d: path("M 0,400 L 0,220 C 121.38755980861242,226.73684210526315 242.77511961722485,233.4736842105263 331,229 C 419.22488038277515,224.5263157894737 474.2870813397129,208.84210526315792 572,203 C 669.7129186602871,197.15789473684208 810.0765550239236,201.15789473684208 915,206 C 1019.9234449760764,210.84210526315792 1089.4066985645934,216.5263157894737 1171,219 C 1252.5933014354066,221.4736842105263 1346.2966507177034,220.73684210526315 1440,220 L 1440,400 L 0,400 Z");
+                    }
+
+                    75% {
+                        d: path("M 0,400 L 0,220 C 70.8133971291866,232.29665071770336 141.6267942583732,244.5933014354067 235,242 C 328.3732057416268,239.4066985645933 444.3062200956938,221.92344497607655 558,223 C 671.6937799043062,224.07655502392345 783.1483253588518,243.71291866028707 886,246 C 988.8516746411482,248.28708133971293 1083.1004784688994,233.22488038277513 1174,226 C 1264.8995215311006,218.77511961722487 1352.4497607655503,219.38755980861242 1440,220 L 1440,400 L 0,400 Z");
+                    }
+
+                    100% {
+                        d: path("M 0,400 L 0,220 C 81.25358851674642,221.77033492822966 162.50717703349284,223.54066985645932 268,226 C 373.49282296650716,228.45933014354068 503.22488038277504,231.60765550239236 594,237 C 684.775119617225,242.39234449760764 736.5933014354068,250.0287081339713 821,245 C 905.4066985645932,239.9712918660287 1022.401913875598,222.27751196172252 1131,216 C 1239.598086124402,209.72248803827748 1339.799043062201,214.86124401913872 1440,220 L 1440,400 L 0,400 Z");
+                    }
+                }
+            </style>
+            <defs>
+                <linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%">
+                    <stop offset="5%" stop-color="#575757"></stop>
+                    <stop offset="95%" stop-color="#575757"></stop>
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,400 L 0,220 C 81.25358851674642,221.77033492822966 162.50717703349284,223.54066985645932 268,226 C 373.49282296650716,228.45933014354068 503.22488038277504,231.60765550239236 594,237 C 684.775119617225,242.39234449760764 736.5933014354068,250.0287081339713 821,245 C 905.4066985645932,239.9712918660287 1022.401913875598,222.27751196172252 1131,216 C 1239.598086124402,209.72248803827748 1339.799043062201,214.86124401913872 1440,220 L 1440,400 L 0,400 Z"
+                stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.53"
+                class="transition-all duration-300 ease-in-out delay-150 path-2"></path>
+            <style>
+                .path-3 {
+                    animation: pathAnim-3 4s;
+                    animation-timing-function: linear;
+                    animation-iteration-count: infinite;
+                }
+
+                @keyframes pathAnim-3 {
+                    0% {
+                        d: path("M 0,400 L 0,300 C 72.05741626794256,303.4736842105263 144.1148325358851,306.9473684210526 245,313 C 345.8851674641149,319.0526315789474 475.598086124402,327.6842105263157 570,329 C 664.401913875598,330.3157894736843 723.4928229665071,324.3157894736843 823,318 C 922.5071770334929,311.6842105263157 1062.4306220095696,305.05263157894734 1172,302 C 1281.5693779904304,298.94736842105266 1360.7846889952152,299.47368421052636 1440,300 L 1440,400 L 0,400 Z");
+                    }
+
+                    25% {
+                        d: path("M 0,400 L 0,300 C 75.06220095693783,301.57894736842104 150.12440191387566,303.1578947368421 240,305 C 329.87559808612434,306.8421052631579 434.56459330143537,308.94736842105266 537,310 C 639.4354066985646,311.05263157894734 739.6172248803827,311.05263157894734 841,309 C 942.3827751196173,306.94736842105266 1044.9665071770337,302.84210526315786 1145,301 C 1245.0334928229663,299.15789473684214 1342.5167464114832,299.57894736842104 1440,300 L 1440,400 L 0,400 Z");
+                    }
+
+                    50% {
+                        d: path("M 0,400 L 0,300 C 76.30622009569379,316.3732057416268 152.61244019138758,332.7464114832536 254,329 C 355.3875598086124,325.2535885167464 481.8564593301436,301.3875598086125 584,295 C 686.1435406698564,288.6124401913875 763.9617224880384,299.7033492822966 868,298 C 972.0382775119616,296.2966507177034 1102.2966507177034,281.799043062201 1202,280 C 1301.7033492822966,278.200956937799 1370.8516746411483,289.1004784688995 1440,300 L 1440,400 L 0,400 Z");
+                    }
+
+                    75% {
+                        d: path("M 0,400 L 0,300 C 106.88995215311004,284.53588516746413 213.7799043062201,269.07177033492826 312,274 C 410.2200956937799,278.92822966507174 499.77033492822954,304.24880382775115 598,303 C 696.2296650717705,301.75119617224885 803.1387559808612,273.93301435406704 899,277 C 994.8612440191388,280.06698564593296 1079.6746411483255,314.01913875598086 1168,323 C 1256.3253588516745,331.98086124401914 1348.1626794258373,315.99043062200957 1440,300 L 1440,400 L 0,400 Z");
+                    }
+
+                    100% {
+                        d: path("M 0,400 L 0,300 C 72.05741626794256,303.4736842105263 144.1148325358851,306.9473684210526 245,313 C 345.8851674641149,319.0526315789474 475.598086124402,327.6842105263157 570,329 C 664.401913875598,330.3157894736843 723.4928229665071,324.3157894736843 823,318 C 922.5071770334929,311.6842105263157 1062.4306220095696,305.05263157894734 1172,302 C 1281.5693779904304,298.94736842105266 1360.7846889952152,299.47368421052636 1440,300 L 1440,400 L 0,400 Z");
+                    }
+                }
+            </style>
+            <defs>
+                <linearGradient id="gradient" x1="50%" y1="100%" x2="50%" y2="0%">
+                    <stop offset="5%" stop-color="#575757"></stop>
+                    <stop offset="95%" stop-color="#575757"></stop>
+                </linearGradient>
+            </defs>
+            <path
+                d="M 0,400 L 0,300 C 72.05741626794256,303.4736842105263 144.1148325358851,306.9473684210526 245,313 C 345.8851674641149,319.0526315789474 475.598086124402,327.6842105263157 570,329 C 664.401913875598,330.3157894736843 723.4928229665071,324.3157894736843 823,318 C 922.5071770334929,311.6842105263157 1062.4306220095696,305.05263157894734 1172,302 C 1281.5693779904304,298.94736842105266 1360.7846889952152,299.47368421052636 1440,300 L 1440,400 L 0,400 Z"
+                stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="1"
+                class="transition-all duration-300 ease-in-out delay-150 path-3"></path>
+        </svg>
+    </div>
+    <footer class="evotix-footer" id="bantuan">
+        <div class="footer-top">
+            <div class="container">
+                <!-- CTA -->
+                <div class="footer-cta" data-aos="fade-up" data-aos-delay="200">
+                    <h2>Siap Beli Tiket Event Favoritmu?</h2>
+                    <a href="#" class="btn-cta">Pesan Sekarang</a>
+                </div>
+
+                <!-- Konten Utama Footer -->
+                <div class="footer-grid">
+                    <!-- Tentang -->
+                    <div class="footer-about" data-aos="fade-up" data-aos-delay="200">
+                        <img src="../img/evotix.png" alt="LOGO EVOTIX" style="height: 100px; margin-bottom: 30px;">
+                        <h3 class="logo">Evotix</h3>
+                        <p class="desc">Evotix adalah platform pemesanan tiket event yang mendukung UMKM, komunitas, dan
+                            acara lokal. Temukan event terbaik & pesan tiketmu dengan mudah!</p>
+                    </div>
+
+                    <!-- Kategori Event -->
+                    <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Kategori Event</h4>
+                        <ul>
+                            <li><a href="#">Musik & Konser</a></li>
+                            <li><a href="#">Seminar & Edukasi</a></li>
+                            <li><a href="#">Komunitas & Sosial</a></li>
+                            <li><a href="#">UMKM & Lokal</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Perusahaan -->
+                    <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Perusahaan</h4>
+                        <ul>
+                            <li><a href="tentang-kami.html">Tentang Kami</a></li>
+                            <li><a href="#">Kerjasama Event</a></li>
+                            <li><a href="#">Pusat Bantuan</a></li>
+                            <li><a href="#">Kontak</a></li>
+                            <li><a href="FAQ.html">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="footer-newsletter" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Newsletter</h4>
+                        <p>Dapatkan informasi event terbaru setiap minggunya!</p>
+                        <form>
+                            <input type="email" placeholder="Email kamu..." required>
+                            <button type="submit">Langganan</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Tim Kelompok / Partner -->
+                <div class="footer-team" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Tim Developer Evotix</h4>
+                    <div class="team-list">
+                        <div class="team-member">
+                            <img src="../img/hasan.jpg" alt="Tim 1">
+                            <p>Hasan</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="../img/sasa.jpeg" alt="Tim 2">
+                            <p>Sabrina</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="../img/labib.jpeg" alt="Tim 3">
+                            <p>Labib</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="../img/viola.jpeg" alt="Tim 4">
+                            <p>Vio</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="../img/intan.jpeg" alt="Tim 4">
+                            <p>Intan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sosial Media -->
+                <div class="footer-social" data-aos="fade-up" data-aos-delay="100">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Evotix. Semua hak cipta dilindungi. Dibuat oleh Tim Evotix</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+ <!-- END FOOTER -->
+</html>

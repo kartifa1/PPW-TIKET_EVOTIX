@@ -1,0 +1,382 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+ background-color: #e0e0e0!important;
+
+}
+
+/* === NAVBAR === */
+        .navbar {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            animation: fadeDown 0.6s ease-out;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === NAVBAR LINK === */
+        .navbar-nav .nav-link {
+            color: #444 !important;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #000 !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: -4px;
+            background-color: #000;
+            transition: width 0.4s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+.faq-section {
+  width: 100%;
+  padding: 60px 15px;
+    padding-bottom: 80px;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.faq-boxes {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-box {
+  background-color: #575757;
+  border-radius: 10px;
+  padding: 20px 25px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-left: 5px solid #ffc107;
+  color: #fff;
+}
+
+.faq-box:hover {
+  background-color: #4a4a4a;
+}
+
+.faq-question {
+  font-size: 18px;
+  font-weight: 600;
+  position: relative;
+  padding-right: 25px;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.faq-box.active .faq-question::after {
+  content: '-';
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.faq-box.active .faq-answer {
+  max-height: 500px; /* cukup tinggi untuk jawaban panjang */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+.btn-wa-grey {
+  display: inline-block;
+  background: linear-gradient(135deg, #aaaaaa, #4e4e4e); /* Abu terang ke gelap */
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 20px rgba(160, 160, 160, 0.4); /* efek glow */
+  animation: pulseGrey 2s infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-wa-grey:hover {
+  background: linear-gradient(135deg, #4e4e4e, #222222);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(80, 80, 80, 0.6);
+  color: #fff;
+}
+
+@keyframes pulseGrey {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(160, 160, 160, 0.3);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(160, 160, 160, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(160, 160, 160, 0.2);
+  }
+}
+/* ANIMASI MASUK FAQ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi FAQ container */
+.faq-section .faq-boxes {
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* Animasikan tiap box dengan delay berbeda */
+.faq-box {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.7s ease forwards;
+}
+.faq-box:nth-child(1) { animation-delay: 0.2s; }
+.faq-box:nth-child(2) { animation-delay: 0.3s; }
+.faq-box:nth-child(3) { animation-delay: 0.4s; }
+.faq-box:nth-child(4) { animation-delay: 0.5s; }
+.faq-box:nth-child(5) { animation-delay: 0.6s; }
+
+/* Tombol WA animasi masuk */
+.btn-wa-grey {
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/*FOTTER FOOTER */
+        /*FOTTER FOOTER */
+        .evotix-footer {
+            background: #575757;
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            padding: 4rem 0 2rem;
+            overflow: hidden;
+        }
+
+        .evotix-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ===== CTA Section ===== */
+        .footer-cta {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .footer-cta h2 {
+            font-size: 26px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-cta {
+            background: #A4B1BA;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: #000000;
+            color: white;
+        }
+
+        /* ===== Footer Grid ===== */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        .footer-about .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about .desc {
+            font-size: 14px;
+            color: #bbbbbb;
+        }
+
+        .footer-links h4,
+        .footer-newsletter h4 {
+            font-size: 16px;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #bbbbbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Newsletter */
+        .footer-newsletter input {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .footer-newsletter button {
+            background: #A4B1BA;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .footer-newsletter button:hover {
+            background: #000000;
+        }
+
+        /* ===== Partner Developer ===== */
+        .footer-team {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-team h4 {
+            margin-bottom: 1rem;
+        }
+
+        .team-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            animation: zoomIn 0.6s ease-in-out;
+        }
+
+        .team-member img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #A4B1BA;
+            transition: transform 0.3s;
+        }
+
+        .team-member img:hover {
+            transform: scale(1.1);
+        }
+
+        .team-member p {
+            margin-top: 6px;
+            font-size: 13px;
+        }
+
+        /* ===== Social Media ===== */
+        .footer-social {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .footer-social a {
+            margin: 0 12px;
+            color: #ffffff;
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #000000;
+            transform: scale(1.2);
+        }
+        /* ===== Copyright ===== */
+        .footer-bottom {
+            text-align: center;
+            font-size: 50px;
+            color: #aaaaaa;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            animation: fadeInUp 1s ease;
+        }

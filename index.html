@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Evotix</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background: url('./assest/img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .ticket-container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      display: flex;
+      width: 100%;
+      max-width: 950px;
+      min-height: 440px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.7s ease;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .ticket-container::before,
+    .ticket-container::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #bcbcbc;
+      border-radius: 50%;
+      z-index: 10;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .ticket-container::before {
+      top: -25px;
+    }
+
+    .ticket-container::after {
+      bottom: -25px;
+    }
+
+    .left-panel,
+    .right-panel {
+      flex: 1;
+      padding: 2rem;
+      transition: all 0.7s ease;
+    }
+
+    .left-panel {
+      border-right: 2px dashed #ccc;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.15);
+      z-index: 5;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left-panel img {
+      margin-bottom: 1rem;
+    }
+
+    .left-panel h3,
+    .left-panel p,
+    .left-panel div {
+      color: white;
+    }
+
+    .right-panel {
+      background-color: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(30px);
+    }
+
+    .btn-social {
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin: 5px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group i.fa-envelope,
+    .form-group i.fa-lock,
+    .form-group i.fa-user {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #1c1c1c;
+      pointer-events: none;
+      border-radius: 12px;
+      padding: 8px;
+      z-index: 2;
+      transition: none;
+    }
+
+    .form-control {
+      padding-left: 48px;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      color: #000;
+      box-shadow: none !important;
+      appearance: none;
+    }
+
+    .form-control::placeholder {
+      color: #444;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #888;
+      background-color: #fff;
+    }
+
+    .eye-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #2e2e2e;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(to right, #d0d0d0, #888);
+      color: #222;
+      transition: 0.3s;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-btn:hover {
+      background: linear-gradient(to right, #eaeaea, #666);
+    }
+
+    .toggle-panel {
+      cursor: pointer;
+      color: #000000;
+      font-weight: bold;
+    }
+
+    .form-container {
+      transition: transform 0.6s ease-in-out;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .form-wrapper {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .form-section {
+      width: 50%;
+      padding: 0 2rem;
+    }
+
+    .ticket-container.signup-mode .form-wrapper {
+      transform: translateX(-50%);
+    }
+
+    /* Modal Forgot Password */
+    .modal.fade .modal-dialog {
+      margin-top: 10vh;
+    }
+
+    .toast-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1060;
+    }
+
+    .toast {
+      background-color: #198754;
+      color: white;
+      border-radius: 6px;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+	a {
+		color: #000000;
+	}
+  </style>
+</head>
+
+<body>
+  <div class="ticket-container" id="ticketBox">
+    <div class="left-panel" id="leftPanel">
+      <img src="./assest/img/evotix.png" height="55" alt="Evotix Logo">
+      <h3 class="mt-3">Evotix - Find Your Happiness With Us</h3>
+      <p class="mt-2">Discover events, join communities, and feel the joy!</p>
+      <div class="mt-5">
+        <strong>100K+</strong> Happy Users<br />
+        <strong>5,000+</strong> Events Shared<br />
+        <strong>Worldwide</strong> Connections Built
+      </div>
+    </div>
+    <div class="right-panel" id="rightPanel">
+      <div class="form-container">
+        <div class="form-wrapper">
+          <!-- Login Form -->
+          <div class="form-section">
+            <h4 class="mb-3 text-white">Let’s get started</h4>
+            <div class="text-center mb-3">
+              <button class="btn btn-light btn-social"><i class="fab fa-google"></i></button>
+              <button class="btn btn-dark btn-social"><i class="fab fa-apple"></i></button>
+              <button class="btn btn-primary btn-social"><i class="fab fa-facebook-f"></i></button>
+              <button class="btn btn-info btn-social"><i class="fab fa-twitter"></i></button>
+            </div>
+            <p class="text-center text-white">or Sign In with Email</p>
+            <form id="loginForm" onsubmit="return login(event)">
+              <div class="form-group mb-3">
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="form-control" id="email" placeholder="Email address" required>
+              </div>
+              <div class="form-group mb-3">
+                <i class="fa fa-lock"></i>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <i class="fa fa-eye eye-icon" onclick="togglePassword()"></i>
+              </div>
+              <div class="mb-3 text-end">
+                <a href="#" onclick="showForgot()">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn login-btn text-white">Log in</button>
+              <p class="mt-3 text-center text-white">Don't have an account? <span class="toggle-panel" onclick="toggleSignup()">Sign Up</span></p>
+            </form>
+          </div>
+
+          <!-- Sign Up Form -->
+          <div class="form-section">
+            <h4 class="mb-3">Create your account</h4>
+            <form>
+              <div class="form-group mb-3">
+                <i class="fa fa-user"></i>
+                <input type="text" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="form-group mb-3">
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="form-group mb-3">
+                <i class="fa fa-lock"></i>
+                <input type="password" class="form-control" placeholder="Password" required>
+              </div>
+              <button type="submit" class="btn login-btn">Register</button>
+              <p class="mt-3 text-center">Already have an account? <span class="toggle-panel" onclick="toggleSignup()">Login</span></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Forgot Password -->
+  <div class="modal fade" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forgot Password</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="email" class="form-control" id="resetEmail" placeholder="Enter your email">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-dark" onclick="sendReset()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+<!-- JS Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+  }
+
+  function toggleSignup() {
+    const box = document.querySelector('.ticket-container');
+    box.classList.toggle('signup-mode');
+  }
+
+  function showForgot() {
+    const forgotModal = new bootstrap.Modal(document.getElementById('forgotModal'));
+    forgotModal.show();
+  }
+
+  function sendReset() {
+    const emailInput = document.getElementById("resetEmail");
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    const sendBtn = document.getElementById("sendBtn") || event.target;
+    sendBtn.innerHTML = `<span class='spinner-border spinner-border-sm' role='status'></span> Sending...`;
+    sendBtn.disabled = true;
+
+    setTimeout(() => {
+      sendBtn.innerHTML = "Send";
+      sendBtn.disabled = false;
+      bootstrap.Modal.getInstance(document.getElementById('forgotModal')).hide();
+
+      showToast(`Password reset link sent to <strong>${email}</strong>`);
+
+      setTimeout(() => {
+        alert("Email Anda telah dikirimkan. Silakan cek Gmail untuk mereset password.");
+      }, 1500);
+    }, 1800);
+  }
+
+  function showToast(message) {
+    const toastContainer = document.getElementById("toastContainer");
+    const toast = document.createElement("div");
+    toast.className = "toast align-items-center p-3 mb-2";
+    toast.setAttribute("role", "alert");
+    toast.innerHTML = `
+      <div class="d-flex">
+        <div class="toast-body">${message}</div>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast"></button>
+      </div>
+    `;
+    toastContainer.appendChild(toast);
+
+    const toastBootstrap = new bootstrap.Toast(toast, { delay: 3000 });
+    toastBootstrap.show();
+
+    setTimeout(() => {
+      toast.remove();
+    }, 3500);
+  }
+
+  function login(e) {
+    e.preventDefault();
+    document.getElementById('leftPanel').style.transform = 'translateX(-100%)';
+    document.getElementById('rightPanel').style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      window.location.href = 'assest/html/beranda.html';
+    }, 900);
+  }
+</script>
+
+</body>
+
+</html>
